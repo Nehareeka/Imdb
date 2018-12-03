@@ -1,0 +1,44 @@
+[
+  {
+    "Id": "12", 
+    "Name": "CCH Pounder",
+    "Sex": "F",
+    "Dob": "1890-07-29T00:00:00",
+    "Bio": "hehe",
+    "Movies": [
+      {
+        "MovieId": 1
+      }
+    ]
+  },
+  {
+    "Id": "13",
+    "Name": "Jason Silva",
+    "Sex": "M",
+    "Dob": "1890-07-29T00:00:00",
+    "Bio": "haha",
+    "Movies": [
+      {
+        "MovieId": 1
+      },
+      {
+        "MovieId": 2
+      }
+    ]
+  },
+  {
+    "Id": "14",
+    "Name": "Tom Hanks",
+    "Sex": "M",
+    "Dob": "1890-07-29T00:00:00",
+    "Bio": "hihi",
+    "Movies": [
+      {
+        "MovieId": 2
+      },
+      {
+        "MovieId": 3
+      }
+    ]
+  }
+]

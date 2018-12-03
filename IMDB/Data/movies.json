@@ -1,0 +1,41 @@
+[
+  {
+    "Id": 1, 
+    "Name": "Batman Begins",
+    "ProducerName": {
+      "Sex": "M",
+      "Dob": "1890-07-29T00:00:00",
+      "Bio": "hihi",
+      "Name": "Steven Spielberg"
+    },
+    "ReleaseYear": "1890-07-29T00:00:00",
+    "Plot": "actoin|native|paraplegic",
+    "Poster": "http://www.imdb.com/title/tt0499549/?ref_=fn_tt_tt_1"
+  },
+  {
+    "Id": 2,
+    "Name": "Avatar ",
+    "ProducerName": {
+      "Sex": "M",
+      "Dob": "1890-07-29T00:00:00",
+      "Bio": "hehe",
+      "Name": "James Cameron"
+    },
+    "ReleaseYear": "1890-07-29T00:00:00",
+    "Plot": "avatar|future|marine|native|paraplegic",
+    "Poster": "http://www.imdb.com/title/tt0499549/?ref_=fn_tt_tt_1"
+  },
+  {
+    "Id": 3,
+    "Name": "Sherlock Holmes ",
+    "ProducerName": {
+      "Sex": "M",
+      "Dob": "1890-07-29T00:00:00",
+      "Bio": "hehe",
+      "Name": "Guy Ritchie"
+    },
+    "ReleaseYear": "1890-07-29T00:00:00",
+    "Plot": "triller|mystery|detective|native",
+    "Poster": "http://www.imdb.com/title/tt0499549/?ref_=fn_tt_tt_1"
+  }
+]
