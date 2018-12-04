@@ -1,9 +1,16 @@
-﻿@model IEnumerable<Movie>
+﻿@model IEnumerable<MovieDto>
+@section Scripts{
+    <script src="~/clientapp/dist/runtime.js"></script>
+    <script src="~/clientapp/dist/polyfills.js"></script>
+    <script src="~/clientapp/dist/styles.js"></script>
+    <script src="~/clientapp/dist/vendor.js"></script>
+    <script src="~/clientapp/dist/main.js"></script>
+}
 
-    
 <body>
 @foreach (var movie in Model)
 {
     <h1>@movie.Name</h1>
 }
 </body>
+<imdb-app></imdb-app>
