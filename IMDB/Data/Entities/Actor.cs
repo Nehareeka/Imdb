@@ -10,7 +10,7 @@ namespace IMDB.Data.Entities
         {
             Movies = new List<MovieActor>();
         }
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Sex { get; set; }

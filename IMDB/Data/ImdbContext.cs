@@ -25,11 +25,11 @@ namespace IMDB.Data
 
             modelBuilder.Entity<Movie>()
                 .Property(c => c.Id)
-                .ValueGeneratedNever();
+                .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Actor>()
                 .Property(c => c.Id)
-                .ValueGeneratedNever();
+                .ValueGeneratedOnAdd();
             modelBuilder.Entity<Producer>()
                 .HasData(new Producer
                 {

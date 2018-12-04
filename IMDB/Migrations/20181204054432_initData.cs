@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IMDB.Migrations
 {
-    public partial class updateData : Migration
+    public partial class initData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,8 @@ namespace IMDB.Migrations
                 name: "Actors",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Sex = table.Column<string>(nullable: true),
                     Dob = table.Column<DateTime>(nullable: false),
@@ -43,7 +44,8 @@ namespace IMDB.Migrations
                 name: "Movies",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     ReleaseYear = table.Column<DateTime>(nullable: false),
                     Plot = table.Column<string>(nullable: true),
@@ -88,7 +90,7 @@ namespace IMDB.Migrations
             migrationBuilder.InsertData(
                 table: "Producers",
                 columns: new[] { "Id", "Bio", "Dob", "Name", "Sex" },
-                values: new object[] { 1, "hehehehe", new DateTime(2018, 11, 27, 16, 38, 39, 41, DateTimeKind.Local), "Steven", "M" });
+                values: new object[] { 1, "hehehehe", new DateTime(2018, 12, 4, 11, 14, 31, 784, DateTimeKind.Local), "Steven", "M" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_MovieActor_MovieId",

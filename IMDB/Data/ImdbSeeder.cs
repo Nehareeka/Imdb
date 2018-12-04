@@ -35,9 +35,10 @@ namespace IMDB.Data
                 json = File.ReadAllText(filepath);
                 var actors = JsonConvert.DeserializeObject<ICollection<Actor>>(json);
 
-                _context.Actors.AddRange(actors);
                 _context.Movies.AddRange(movies);
-
+                _context.SaveChanges();
+                _context.Actors.AddRange(actors);
+                _context.SaveChanges();
                 //foreach (var movie in movies)
                 //{
                 //    foreach (var actor in actors)
@@ -53,7 +54,7 @@ namespace IMDB.Data
                 //    }
                 //}
 
-                _context.SaveChanges();
+                
             }
 
         }

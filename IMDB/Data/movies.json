@@ -1,6 +1,5 @@
 [
   {
-    "Id": 1, 
     "Name": "Batman Begins",
     "ProducerName": {
       "Sex": "M",
@@ -13,7 +12,6 @@
     "Poster": "http://www.imdb.com/title/tt0499549/?ref_=fn_tt_tt_1"
   },
   {
-    "Id": 2,
     "Name": "Avatar ",
     "ProducerName": {
       "Sex": "M",
@@ -26,7 +24,6 @@
     "Poster": "http://www.imdb.com/title/tt0499549/?ref_=fn_tt_tt_1"
   },
   {
-    "Id": 3,
     "Name": "Sherlock Holmes ",
     "ProducerName": {
       "Sex": "M",

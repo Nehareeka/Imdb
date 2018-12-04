@@ -4,16 +4,14 @@ using IMDB.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IMDB.Migrations
 {
     [DbContext(typeof(ImdbContext))]
-    [Migration("20181127110839_updateData")]
-    partial class updateData
+    partial class ImdbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +20,8 @@ namespace IMDB.Migrations
 
             modelBuilder.Entity("IMDB.Data.Entities.Actor", b =>
                 {
-                    b.Property<int>("Id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Bio");
 
@@ -39,7 +38,8 @@ namespace IMDB.Migrations
 
             modelBuilder.Entity("IMDB.Data.Entities.Movie", b =>
                 {
-                    b.Property<int>("Id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
@@ -89,7 +89,7 @@ namespace IMDB.Migrations
                     b.ToTable("Producers");
 
                     b.HasData(
-                        new { Id = 1, Bio = "hehehehe", Dob = new DateTime(2018, 11, 27, 16, 38, 39, 41, DateTimeKind.Local), Name = "Steven", Sex = "M" }
+                        new { Id = 1, Bio = "hehehehe", Dob = new DateTime(2018, 12, 4, 11, 14, 31, 784, DateTimeKind.Local), Name = "Steven", Sex = "M" }
                     );
                 });
 
