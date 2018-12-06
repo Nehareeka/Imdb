@@ -10,31 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var dataService_1 = require("../Shared/dataService");
-var MovieListComponent = /** @class */ (function () {
-    function MovieListComponent(data) {
-        this.data = data;
+var http_1 = require("@angular/common/http");
+var operators_1 = require("rxjs/operators");
+var DataService = /** @class */ (function () {
+    function DataService(http) {
+        this.http = http;
         this.movies = [];
-        this.movies = data.movies;
     }
-    MovieListComponent.prototype.ngOnInit = function () {
+    DataService.prototype.loadMovies = function () {
         var _this = this;
-        this.data.loadMovies()
-            .subscribe(function (data) {
-            if (data) {
-                _this.movies = data;
-            }
-        });
+        return this.http.get("/api/movie")
+            .pipe(operators_1.map(function (data) {
+            _this.movies = data;
+            return _this.movies;
+        }));
     };
-    MovieListComponent = __decorate([
-        core_1.Component({
-            selector: "movie-list",
-            templateUrl: "movieList.component.html",
-            styleUrls: ["movieList.component.css"]
-        }),
-        __metadata("design:paramtypes", [dataService_1.DataService])
-    ], MovieListComponent);
-    return MovieListComponent;
+    DataService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.HttpClient])
+    ], DataService);
+    return DataService;
 }());
-exports.MovieListComponent = MovieListComponent;
-//# sourceMappingURL=movieList.component.js.map
+exports.DataService = DataService;
+//# sourceMappingURL=dataService.js.map

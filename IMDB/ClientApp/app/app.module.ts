@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { MovieListComponent } from './movie/movieList.component'
+import { MovieListComponent } from './movie/movieList.component';
+import { DataService } from './Shared/dataService';
 
 @NgModule({
   declarations: [
@@ -10,9 +12,12 @@ import { MovieListComponent } from './movie/movieList.component'
       MovieListComponent
   ],
   imports: [
-    BrowserModule
+      BrowserModule,
+      HttpClientModule
   ],
-  providers: [],
+    providers: [
+        DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

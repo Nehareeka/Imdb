@@ -1,0 +1,11 @@
+﻿.movie-info .movie-name {
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+
+.movie-info img {
+    max-width: 200px;
+    max-height: 200px;
+    float: left;
+}

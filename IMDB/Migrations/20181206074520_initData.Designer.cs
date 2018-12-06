@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IMDB.Migrations
 {
     [DbContext(typeof(ImdbContext))]
-    [Migration("20181204054432_initData")]
+    [Migration("20181206074520_initData")]
     partial class initData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,7 +91,7 @@ namespace IMDB.Migrations
                     b.ToTable("Producers");
 
                     b.HasData(
-                        new { Id = 1, Bio = "hehehehe", Dob = new DateTime(2018, 12, 4, 11, 14, 31, 784, DateTimeKind.Local), Name = "Steven", Sex = "M" }
+                        new { Id = 1, Bio = "hehehehe", Dob = new DateTime(2018, 12, 6, 13, 15, 19, 756, DateTimeKind.Local), Name = "Steven", Sex = "M" }
                     );
                 });
 

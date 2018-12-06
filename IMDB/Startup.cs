@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using IMDB.Configuration;
+﻿using AutoMapper;
 using IMDB.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json;
 
 namespace IMDB
@@ -63,6 +55,7 @@ namespace IMDB
                 app.UseExceptionHandler("/error"); // display an error razor page(inside Pages folder) in case environment is production
             }
             app.UseStaticFiles();
+            app.UseNodeModules(env);
 
             app.UseMvc(cfg =>
                 {

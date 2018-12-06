@@ -1,8 +1,13 @@
 {
-  "exclude": ["./node_modules/"] ,
+  "skipLibCheck": true,
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ],
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "rootDir": "./ClientApp",
     "outDir": "./wwwroot/clientapp/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -17,5 +22,8 @@
       "es2017",
       "dom"
     ]
-  }
+  },"globalDependencies": {
+      "jquery": "registry:dt/jquery",
+      "jasmine": "registry:dt/jasmine"
+    }
 }

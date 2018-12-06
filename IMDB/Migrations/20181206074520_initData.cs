@@ -90,7 +90,7 @@ namespace IMDB.Migrations
             migrationBuilder.InsertData(
                 table: "Producers",
                 columns: new[] { "Id", "Bio", "Dob", "Name", "Sex" },
-                values: new object[] { 1, "hehehehe", new DateTime(2018, 12, 4, 11, 14, 31, 784, DateTimeKind.Local), "Steven", "M" });
+                values: new object[] { 1, "hehehehe", new DateTime(2018, 12, 6, 13, 15, 19, 756, DateTimeKind.Local), "Steven", "M" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_MovieActor_MovieId",
