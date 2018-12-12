@@ -1,14 +1,14 @@
 ﻿<div class="row">
-    <div class="movie-info col-md-4" *ngFor="let m of movies">
+    <div class="movie-info col-md-4 well well-sm" *ngFor="let m of movies">
         <div class="card bg-light p-1 m-1">
-        <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ m.poster }}" class="img-fluid"/>
+            <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ m.poster }}" class="img-responsive" />
 
             <div class="movie-name">{{m.name}} </div>
-            <ul class="movie-props">
-                <li><strong>Year  </strong>Released in {{m.releaseYear | date:'mediumDate'}}</li>
-                <li><strong>Plot  </strong>{{m.plot}}</li>
-                <li><strong>Producer  </strong>{{m.producerName.name}}</li>
-            </ul>
+            <div><strong>Year  </strong>Released in {{m.releaseYear | date:'mediumDate'}}</div>
+            <div><strong>Plot  </strong>{{m.plot}}</div>
+            <div><strong>Cast  </strong><div *ngFor="let a of m.cast"><a [routerLink]="['/person', a.name ]">{{a.name}}</a></div></div>
+            <div><strong>Producer  </strong><a [routerLink]="['/person',m.producerName | json ]">{{m.producerName.name}}</a></div>
+            <a routerLink="actor" id="" class="btn btn-success btn-sm pull-right">EDIT Info</a>
         </div>
     </div>
     

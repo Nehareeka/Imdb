@@ -9,9 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
+var route_1 = require("@angular/common/route");
 var app_component_1 = require("./app.component");
 var movieList_component_1 = require("./movie/movieList.component");
+var actor_component_1 = require("./actor/actor.component");
 var dataService_1 = require("./Shared/dataService");
+var route = [
+    { path: "", component: " " },
+    { path: " ", component: " " }
+];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -19,11 +25,13 @@ var AppModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 app_component_1.AppComponent,
-                movieList_component_1.MovieListComponent
+                movieList_component_1.MovieListComponent,
+                actor_component_1.ActorComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
-                http_1.HttpClientModule
+                http_1.HttpClientModule,
+                route_1.RouterModule.ForRoot(route)
             ],
             providers: [
                 dataService_1.DataService

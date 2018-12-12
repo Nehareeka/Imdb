@@ -30,7 +30,6 @@ namespace IMDB.Data
             try
             {
                 var result = _context.Movies
-                    .OrderBy(m => m.Name)
                     .Include(m => m.ProducerName)
                     .Include(m => m.Cast)
                     .ThenInclude(c=>c.Actor)

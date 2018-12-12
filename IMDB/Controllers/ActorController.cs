@@ -2,6 +2,7 @@
 using IMDB.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace IMDB.Controllers
 {
@@ -36,6 +37,7 @@ namespace IMDB.Controllers
         {
             try
             {
+                //JsonConvert.DeserializeObject(name);
                 var actor = _repo.GetActorByName(name);
                 if (actor != null)
                     return Ok(actor);

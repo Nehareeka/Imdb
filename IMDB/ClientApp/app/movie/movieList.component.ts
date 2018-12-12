@@ -1,6 +1,6 @@
-﻿import { Component, OnInit } from "@angular/core";
+﻿import { Component, OnInit, Input } from "@angular/core";
 import { DataService } from "../Shared/dataService";
-import { IMovie } from "../Shared/movie";
+import { Movie } from "../Shared/movie";
 
 @Component({
     selector: "movie-list",
@@ -8,12 +8,12 @@ import { IMovie } from "../Shared/movie";
     styleUrls: ["movieList.component.css"]
 })
 export class MovieListComponent implements OnInit{
-   
+   @Input() name:string;
     constructor(private data: DataService) {
         this.movies = data.movies;
     }
 
-    public movies: IMovie[] = [];
+    public movies: Movie[] = [];
 
     ngOnInit(): void {
         this.data.loadMovies()

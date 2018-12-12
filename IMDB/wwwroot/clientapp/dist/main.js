@@ -61,11 +61,48 @@ var DataService = /** @class */ (function () {
             return _this.movies;
         }));
     };
+    DataService.prototype.loadActorDetails = function (name) {
+        var _this = this;
+        return this.http.get("/api/actor/" + name)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) {
+            _this.person = data;
+            return _this.person;
+        }));
+    };
     DataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], DataService);
     return DataService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/Shared/person.ts":
+/*!******************************!*\
+  !*** ./app/Shared/person.ts ***!
+  \******************************/
+/*! exports provided: MovieData, Person */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MovieData", function() { return MovieData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Person", function() { return Person; });
+var MovieData = /** @class */ (function () {
+    function MovieData() {
+    }
+    return MovieData;
+}());
+
+var Person = /** @class */ (function () {
+    function Person() {
+        this.dob = new Date();
+        this.movies = new Array();
+    }
+    return Person;
 }());
 
 
@@ -79,7 +116,7 @@ var DataService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>app.component</title>\r\n</head>\r\n<body>\r\n<!--The content below is only a placeholder and can be replaced.-->\r\n<div>\r\n    <h1 style=\"text-align:center\">\r\n        Welcome to {{title}}!\r\n    </h1>\r\n    <movie-list></movie-list>\r\n</div>\r\n\r\n</body>\r\n</html>"
+module.exports = "\r\n        <router-outlet></router-outlet>\r\n      \r\n"
 
 /***/ }),
 
@@ -132,9 +169,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "../node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "../node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.component */ "./app/app.component.ts");
-/* harmony import */ var _movie_movieList_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./movie/movieList.component */ "./app/movie/movieList.component.ts");
-/* harmony import */ var _Shared_dataService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Shared/dataService */ "./app/Shared/dataService.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./app/app.component.ts");
+/* harmony import */ var _movie_movieList_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./movie/movieList.component */ "./app/movie/movieList.component.ts");
+/* harmony import */ var _person_person_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./person/person.component */ "./app/person/person.component.ts");
+/* harmony import */ var _Shared_dataService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Shared/dataService */ "./app/Shared/dataService.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -147,23 +186,35 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+var route = [
+    { path: "", component: _movie_movieList_component__WEBPACK_IMPORTED_MODULE_5__["MovieListComponent"] },
+    { path: "person/:name", component: _person_person_component__WEBPACK_IMPORTED_MODULE_6__["PersonComponent"] },
+    { path: "person/:producerName", component: _person_person_component__WEBPACK_IMPORTED_MODULE_6__["PersonComponent"] }
+];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
-                _movie_movieList_component__WEBPACK_IMPORTED_MODULE_4__["MovieListComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
+                _movie_movieList_component__WEBPACK_IMPORTED_MODULE_5__["MovieListComponent"],
+                _person_person_component__WEBPACK_IMPORTED_MODULE_6__["PersonComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"]
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forRoot(route, {
+                    useHash: true
+                    // enableTracing: true //for debugging of the routes
+                })
             ],
             providers: [
-                _Shared_dataService__WEBPACK_IMPORTED_MODULE_5__["DataService"]
+                _Shared_dataService__WEBPACK_IMPORTED_MODULE_7__["DataService"]
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -180,7 +231,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".movie-info .movie-name {\r\n    font-size: large;\r\n    font-weight: bold;\r\n    text-align: center;\r\n}\r\n\r\n.movie-info img {\r\n    max-width: 200px;\r\n    max-height: 200px;\r\n    float: left;\r\n}"
+module.exports = ".movie-info {\r\n    max-height: 550px;\r\n}\r\n\r\n.movie-info .movie-name {\r\n    font-size: large;\r\n    font-weight: bold;\r\n    text-align: center;\r\n}\r\n\r\n.movie-info img {\r\n    max-width: 300px;\r\n    max-height: 300px;\r\n    float: left;\r\n    margin: 2px 15px;\r\n    border: solid 1px black;\r\n}"
 
 /***/ }),
 
@@ -191,7 +242,7 @@ module.exports = ".movie-info .movie-name {\r\n    font-size: large;\r\n    font
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"movie-info col-md-4\" *ngFor=\"let m of movies\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n        <img src=\"https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ m.poster }}\" class=\"img-fluid\"/>\r\n\r\n            <div class=\"movie-name\">{{m.name}} </div>\r\n            <ul class=\"movie-props\">\r\n                <li><strong>Year  </strong>Released in {{m.releaseYear | date:'mediumDate'}}</li>\r\n                <li><strong>Plot  </strong>{{m.plot}}</li>\r\n                <li><strong>Producer  </strong>{{m.producerName.name}}</li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n    \r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"movie-info col-md-4 well well-sm\" *ngFor=\"let m of movies\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ m.poster }}\" class=\"img-responsive\" />\r\n\r\n            <div class=\"movie-name\">{{m.name}} </div>\r\n            <div><strong>Year  </strong>Released in {{m.releaseYear | date:'mediumDate'}}</div>\r\n            <div><strong>Plot  </strong>{{m.plot}}</div>\r\n            <div><strong>Cast  </strong><div *ngFor=\"let a of m.cast\"><a [routerLink]=\"['/person', a.name ]\">{{a.name}}</a></div></div>\r\n            <div><strong>Producer  </strong><a [routerLink]=\"['/person',m.producerName | json ]\">{{m.producerName.name}}</a></div>\r\n            <a routerLink=\"actor\" id=\"\" class=\"btn btn-success btn-sm pull-right\">EDIT Info</a>\r\n        </div>\r\n    </div>\r\n    \r\n</div>"
 
 /***/ }),
 
@@ -233,6 +284,10 @@ var MovieListComponent = /** @class */ (function () {
             }
         });
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String)
+    ], MovieListComponent.prototype, "name", void 0);
     MovieListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: "movie-list",
@@ -242,6 +297,85 @@ var MovieListComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_Shared_dataService__WEBPACK_IMPORTED_MODULE_1__["DataService"]])
     ], MovieListComponent);
     return MovieListComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./app/person/person.component.html":
+/*!******************************************!*\
+  !*** ./app/person/person.component.html ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n    <div class=\"card bg-light p-1 m-1\">\r\n\r\n\r\n        <div class=\"movie-name\">{{person.name}} </div>\r\n        <div><strong>Date of Birth  </strong>Released in {{person.dob | date:'mediumDate'}}</div>\r\n        <div><strong>Bio  </strong>{{person.bio}}</div>\r\n        <div><strong>Gender  </strong>{{person.sex}}</div>\r\n        <div *ngFor=\"let m of person.movies\">\r\n            <div>{{m.name}}</div>\r\n        </div>\r\n    </div>\r\n\r\n</div>"
+
+/***/ }),
+
+/***/ "./app/person/person.component.ts":
+/*!****************************************!*\
+  !*** ./app/person/person.component.ts ***!
+  \****************************************/
+/*! exports provided: PersonComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PersonComponent", function() { return PersonComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _Shared_dataService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Shared/dataService */ "./app/Shared/dataService.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "../node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _Shared_person__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Shared/person */ "./app/Shared/person.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var PersonComponent = /** @class */ (function () {
+    function PersonComponent(data, _route) {
+        this.data = data;
+        this._route = _route;
+        this.person = new _Shared_person__WEBPACK_IMPORTED_MODULE_3__["Person"]();
+    }
+    PersonComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._route.params.subscribe(function (params) {
+            _this.input = params['name'];
+        });
+        this.input = this.isJSON(this.input);
+    };
+    PersonComponent.prototype.getPerson = function (name) {
+        var _this = this;
+        this.data.loadActorDetails(name)
+            .subscribe(function (data) { return _this.person = data; });
+    };
+    PersonComponent.prototype.isJSON = function (data) {
+        try {
+            this.person = JSON.parse(data);
+        }
+        catch (e) {
+            return this.getPerson(data);
+        }
+    };
+    PersonComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: "person-detail",
+            template: __webpack_require__(/*! ./person.component.html */ "./app/person/person.component.html"),
+            styleUrls: []
+        }),
+        __metadata("design:paramtypes", [_Shared_dataService__WEBPACK_IMPORTED_MODULE_1__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
+    ], PersonComponent);
+    return PersonComponent;
 }());
 
 

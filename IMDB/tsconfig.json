@@ -1,8 +1,7 @@
 {
   "skipLibCheck": true,
-  "exclude": [
-    "node_modules",
-    "wwwroot"
+  "include": [
+    "./ClientApp/**/*.ts"
   ],
   "compileOnSave": false,
   "compilerOptions": {
