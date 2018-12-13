@@ -5,8 +5,12 @@
 
             <div class="movie-name">{{m.name}} </div>
             <div><strong>Year  </strong>Released in {{m.releaseYear | date:'mediumDate'}}</div>
-            <div><strong>Plot  </strong>{{m.plot}}</div>
-            <div><strong>Cast  </strong><div *ngFor="let a of m.cast"><a [routerLink]="['/person', a.name ]">{{a.name}}</a></div></div>
+            <div>
+                <strong>Cast </strong>
+                <div class="cast" *ngFor="let a of m.cast; let lastItem=last;">
+                    <a [routerLink]="['/person', a.name ]"> {{a.name}}<span *ngIf="!lastItem">, </span> </a>
+                </div>
+            </div>
             <div><strong>Producer  </strong><a [routerLink]="['/person',m.producerName | json ]">{{m.producerName.name}}</a></div>
             <a routerLink="actor" id="" class="btn btn-success btn-sm pull-right">EDIT Info</a>
         </div>

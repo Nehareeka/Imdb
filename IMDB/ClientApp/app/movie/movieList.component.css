@@ -8,6 +8,10 @@
     text-align: center;
 }
 
+.movie-info .cast {
+    display: inline-block;
+}
+
 .movie-info img {
     max-width: 300px;
     max-height: 300px;

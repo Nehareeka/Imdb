@@ -14,10 +14,13 @@ namespace IMDB.ViewModel
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+        [Required]
         public DateTime ReleaseYear { get; set; }
         public string Plot { get; set; }
         public string Poster { get; set; }//Image url
+        [Required]
         public virtual ICollection<MovieActor> Cast { get; set; }
+        [Required]
         public Producer ProducerName { get; set; }
     }
 }

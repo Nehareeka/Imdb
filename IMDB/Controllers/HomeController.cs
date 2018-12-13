@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using IMDB.Data;
+using IMDB.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,5 +20,15 @@ namespace IMDB.Controllers
             var result = _repo.GetAllMovies();
             return View(result);
         }
+
+        [HttpPost]
+        public IActionResult Add(MovieViewModel input)
+        {
+            return null;
+            // throw new InvalidOperationException("Oops!  ");
+            //var result = _repo.GetAllMovies();
+            //return View(result);
+        }
+
     }
 }
