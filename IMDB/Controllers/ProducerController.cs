@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace IMDB.Controllers
 {
-    [Route("api/movie/{id}/producer")]
+    [Route("api/[controller]")]
     public class ProducerController :ControllerBase
     {
         private readonly IImdbRepository _repo;
@@ -22,14 +22,14 @@ namespace IMDB.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(int id)
+        public IActionResult Get()
         {
             try
             {
-                var producer = _repo.GetProducer(id);
+                var producer = _repo.GetProducer();
                 if (producer != null)
                     return Ok(producer);
-                else return NotFound();
+                return NotFound();
             }
             catch(Exception ex)
             { 

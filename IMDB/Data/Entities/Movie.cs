@@ -17,7 +17,8 @@ namespace IMDB.Data.Entities
         public string Plot { get; set; }
         public string Poster { get; set; }//Image url
         public virtual ICollection<MovieActor> Cast { get; set; }
-        public Producer ProducerName { get; set; }
+        public int ProducerId { get; set; }
+        public Producer Producer { get; set; }
         
     }
 }

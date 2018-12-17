@@ -30,13 +30,17 @@ namespace IMDB.Data
             modelBuilder.Entity<Actor>()
                 .Property(c => c.Id)
                 .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Producer>()
+                .Property(c => c.Id)
+                .ValueGeneratedOnAdd();
+
             modelBuilder.Entity<Producer>()
                 .HasData(new Producer
                 {
                     Id = 1,
                     Bio = "hehehehe",
                     Dob = DateTime.Now,
-                    Movies = {},
                     Name = "Steven",
                     Sex = "M"
                 });
@@ -53,6 +57,11 @@ namespace IMDB.Data
                 .WithMany(c => c.Movies)
                 .HasForeignKey(bc => bc.ActorId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Movie>()
+                .HasOne(e => e.Producer)
+                .WithMany(c => c.Movies)
+                .IsRequired();
 
 
         }

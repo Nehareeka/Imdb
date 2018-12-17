@@ -11,7 +11,7 @@
                     <a [routerLink]="['/person', a.name ]"> {{a.name}}<span *ngIf="!lastItem">, </span> </a>
                 </div>
             </div>
-            <div><strong>Producer  </strong><a [routerLink]="['/person',m.producerName | json ]">{{m.producerName.name}}</a></div>
+            <div><strong>Producer  </strong><a [routerLink]="['/person',m.producer | json ]">{{m.producer.name}}</a></div>
             <a routerLink="actor" id="" class="btn btn-success btn-sm pull-right">EDIT Info</a>
         </div>
     </div>

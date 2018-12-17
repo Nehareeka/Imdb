@@ -34,7 +34,13 @@ namespace IMDB.Data
                 filepath = Path.Combine(_hosting.ContentRootPath, "Data/actors.json");
                 json = File.ReadAllText(filepath);
                 var actors = JsonConvert.DeserializeObject<ICollection<Actor>>(json);
+                filepath = Path.Combine(_hosting.ContentRootPath, "Data/producers.json");
+                json = File.ReadAllText(filepath);
+                var producers = JsonConvert.DeserializeObject<ICollection<Producer>>(json);
 
+
+                _context.Producers.AddRange(producers);
+                _context.SaveChanges();
                 _context.Movies.AddRange(movies);
                 _context.SaveChanges();
                 _context.Actors.AddRange(actors);
@@ -54,7 +60,7 @@ namespace IMDB.Data
                 //    }
                 //}
 
-                
+
             }
 
         }

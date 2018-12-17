@@ -50,17 +50,17 @@ namespace IMDB.Migrations
                     ReleaseYear = table.Column<DateTime>(nullable: false),
                     Plot = table.Column<string>(nullable: true),
                     Poster = table.Column<string>(nullable: true),
-                    ProducerNameId = table.Column<int>(nullable: true)
+                    ProducerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Movies_Producers_ProducerNameId",
-                        column: x => x.ProducerNameId,
+                        name: "FK_Movies_Producers_ProducerId",
+                        column: x => x.ProducerId,
                         principalTable: "Producers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,7 +90,7 @@ namespace IMDB.Migrations
             migrationBuilder.InsertData(
                 table: "Producers",
                 columns: new[] { "Id", "Bio", "Dob", "Name", "Sex" },
-                values: new object[] { 1, "hehehehe", new DateTime(2018, 12, 6, 13, 15, 19, 756, DateTimeKind.Local), "Steven", "M" });
+                values: new object[] { 1, "hehehehe", new DateTime(2018, 12, 17, 12, 38, 4, 600, DateTimeKind.Local), "Steven", "M" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_MovieActor_MovieId",
@@ -98,9 +98,9 @@ namespace IMDB.Migrations
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_ProducerNameId",
+                name: "IX_Movies_ProducerId",
                 table: "Movies",
-                column: "ProducerNameId");
+                column: "ProducerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

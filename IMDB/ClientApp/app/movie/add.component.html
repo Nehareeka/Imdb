@@ -9,20 +9,28 @@
             <div class="form-group"  [class.has-error]="name.invalid && name.touched">
                 <label class="control-label" for="releaseYear">Release Year</label>
                 <input type="date" class="form-control" name="releaseYear" [(ngModel)]="movie.releaseYear" #releaseyear="ngModel" required/>
-                <div *ngIf="releaseyear.invalid && releaseyear.touched" class="alert alert-danger">Enter movie name.</div>
+                <div *ngIf="releaseyear.invalid && releaseyear.touched" class="alert alert-danger">Enter release date.</div>
             </div>
             <div class="form-group" [class.has-error]="plot.invalid && plot.touched">
                 <label class="control-label" for="plot">Plot</label>
                 <input type="text" class="form-control" name="plot" [(ngModel)]="movie.plot" #plot="ngModel" required />
-                <div *ngIf="plot.invalid && plot.touched" class="alert alert-danger">Enter movie name.</div>
+                <div *ngIf="plot.invalid && plot.touched" class="alert alert-danger">Enter movie plot.</div>
             </div>
             <div class="form-group">
                 <label for="cast">Cast</label>
-                <input type="text" class="form-control" name="cast" [(ngModel)]="movie.cast" required/>
+                <select name="cast" class="form-control" [(ngModel)]="movie.cast" #cast="ngModel" required>
+                    <option *ngFor="let actor of actorList">{{actor?.name}}</option>
+                    <option>Other</option>
+                </select>
+                <div *ngIf="cast.invalid && cast.touched" class="alert alert-danger">Enter movie cast.</div>
             </div>
             <div class="form-group">
                 <label for="producer">Producer</label>
-                <input type="text" class="form-control" name="producer" [(ngModel)]="movie.producerName" required/>
+                <select name="producer" class="form-control" [(ngModel)]="movie.producer" #producer="ngModel" required>
+                    <option *ngFor="let producer of producerList">{{producer?.name}}</option>
+                    <option>Other</option>
+                </select>
+                <div *ngIf="producer.invalid && producer.touched" class="alert alert-danger">Enter movie producer.</div>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-success" value="Add"/>

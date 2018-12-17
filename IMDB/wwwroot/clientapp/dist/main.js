@@ -69,6 +69,20 @@ var DataService = /** @class */ (function () {
             return _this.person;
         }));
     };
+    DataService.prototype.addNewMovie = function (movie) {
+        return this.http.post("/api/movie", movie, { headers: {
+                'Content-Type': 'application/json'
+            } })
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) {
+            return data;
+        }));
+    };
+    DataService.prototype.loadPerson = function (person) {
+        return this.http.get("/api/" + person)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) {
+            return data;
+        }));
+    };
     DataService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
@@ -84,22 +98,17 @@ var DataService = /** @class */ (function () {
 /*!*****************************!*\
   !*** ./app/Shared/movie.ts ***!
   \*****************************/
-/*! exports provided: Cast, Movie */
+/*! exports provided: Movie */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cast", function() { return Cast; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Movie", function() { return Movie; });
-var Cast = /** @class */ (function () {
-    function Cast() {
-    }
-    return Cast;
-}());
+/* harmony import */ var _person__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./person */ "./app/Shared/person.ts");
 
 var Movie = /** @class */ (function () {
     function Movie() {
-        this.producerName = new Array();
+        this.producer = new _person__WEBPACK_IMPORTED_MODULE_0__["Person"]();
         this.releaseYear = new Date();
         this.cast = new Array();
     }
@@ -268,7 +277,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-4 col-md-offset-4\" >\r\n        <form (submit)=\"onSubmit()\" #form=\"ngForm\" novalidate>\r\n            <div class=\"form-group has-error\">\r\n                <label class=\"control-label\">Name</label>\r\n                <input #name=\"ngModel\" type=\"text\" class=\"form-control\" name=\"name\" [(ngModel)]=\"movie.name\" required/>\r\n                <div *ngIf=\"name.invalid && name.touched\" class=\"alert alert-danger\">Enter movie name.</div>\r\n            </div>\r\n            <div class=\"form-group\"  [class.has-error]=\"name.invalid && name.touched\">\r\n                <label class=\"control-label\" for=\"releaseYear\">Release Year</label>\r\n                <input type=\"date\" class=\"form-control\" name=\"releaseYear\" [(ngModel)]=\"movie.releaseYear\" #releaseyear=\"ngModel\" required/>\r\n                <div *ngIf=\"releaseyear.invalid && releaseyear.touched\" class=\"alert alert-danger\">Enter movie name.</div>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"plot.invalid && plot.touched\">\r\n                <label class=\"control-label\" for=\"plot\">Plot</label>\r\n                <input type=\"text\" class=\"form-control\" name=\"plot\" [(ngModel)]=\"movie.plot\" #plot=\"ngModel\" required />\r\n                <div *ngIf=\"plot.invalid && plot.touched\" class=\"alert alert-danger\">Enter movie name.</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"cast\">Cast</label>\r\n                <input type=\"text\" class=\"form-control\" name=\"cast\" [(ngModel)]=\"movie.cast\" required/>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"producer\">Producer</label>\r\n                <input type=\"text\" class=\"form-control\" name=\"producer\" [(ngModel)]=\"movie.producerName\" required/>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <input type=\"submit\" class=\"btn btn-success\" value=\"Add\"/>\r\n                <a routerLinl=\"/\" class=\"btn btn-default\">Cancel</a>\r\n            </div>\r\n\r\n        </form>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-4 col-md-offset-4\" >\r\n        <form (submit)=\"onSubmit()\" #form=\"ngForm\" novalidate>\r\n            <div class=\"form-group has-error\">\r\n                <label class=\"control-label\">Name</label>\r\n                <input #name=\"ngModel\" type=\"text\" class=\"form-control\" name=\"name\" [(ngModel)]=\"movie.name\" required/>\r\n                <div *ngIf=\"name.invalid && name.touched\" class=\"alert alert-danger\">Enter movie name.</div>\r\n            </div>\r\n            <div class=\"form-group\"  [class.has-error]=\"name.invalid && name.touched\">\r\n                <label class=\"control-label\" for=\"releaseYear\">Release Year</label>\r\n                <input type=\"date\" class=\"form-control\" name=\"releaseYear\" [(ngModel)]=\"movie.releaseYear\" #releaseyear=\"ngModel\" required/>\r\n                <div *ngIf=\"releaseyear.invalid && releaseyear.touched\" class=\"alert alert-danger\">Enter release date.</div>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"plot.invalid && plot.touched\">\r\n                <label class=\"control-label\" for=\"plot\">Plot</label>\r\n                <input type=\"text\" class=\"form-control\" name=\"plot\" [(ngModel)]=\"movie.plot\" #plot=\"ngModel\" required />\r\n                <div *ngIf=\"plot.invalid && plot.touched\" class=\"alert alert-danger\">Enter movie plot.</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"cast\">Cast</label>\r\n                <select name=\"cast\" class=\"form-control\" [(ngModel)]=\"movie.cast\" #cast=\"ngModel\" required>\r\n                    <option *ngFor=\"let actor of actorList\">{{actor?.name}}</option>\r\n                    <option>Other</option>\r\n                </select>\r\n                <div *ngIf=\"cast.invalid && cast.touched\" class=\"alert alert-danger\">Enter movie cast.</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"producer\">Producer</label>\r\n                <select name=\"producer\" class=\"form-control\" [(ngModel)]=\"movie.producer\" #producer=\"ngModel\" required>\r\n                    <option *ngFor=\"let producer of producerList\">{{producer?.name}}</option>\r\n                    <option>Other</option>\r\n                </select>\r\n                <div *ngIf=\"producer.invalid && producer.touched\" class=\"alert alert-danger\">Enter movie producer.</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <input type=\"submit\" class=\"btn btn-success\" value=\"Add\"/>\r\n                <a routerLinl=\"/\" class=\"btn btn-default\">Cancel</a>\r\n            </div>\r\n\r\n        </form>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -304,10 +313,21 @@ var AddComponent = /** @class */ (function () {
         this.data = data;
         this.router = router;
         this.movie = new _Shared_movie__WEBPACK_IMPORTED_MODULE_2__["Movie"]();
+        this.producerList = [];
+        this.actorList = [];
     }
     AddComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.data.loadPerson("actor")
+            .subscribe(function (success) { return _this.actorList = success; });
+        this.data.loadPerson("producer")
+            .subscribe(function (success) { return _this.producerList = success; });
     };
     AddComponent.prototype.onSubmit = function () {
+        var _this = this;
+        var movieData = this.movie;
+        this.data.addNewMovie(JSON.stringify(movieData))
+            .subscribe(function (success) { return _this.message = "The movie details has been successfully added."; });
     };
     AddComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -342,7 +362,7 @@ module.exports = ".movie-info {\r\n    max-height: 550px;\r\n}\r\n\r\n.movie-inf
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"movie-info col-md-4 well well-sm\" *ngFor=\"let m of movies\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ m.poster }}\" class=\"img-responsive\" />\r\n\r\n            <div class=\"movie-name\">{{m.name}} </div>\r\n            <div><strong>Year  </strong>Released in {{m.releaseYear | date:'mediumDate'}}</div>\r\n            <div>\r\n                <strong>Cast </strong>\r\n                <div class=\"cast\" *ngFor=\"let a of m.cast; let lastItem=last;\">\r\n                    <a [routerLink]=\"['/person', a.name ]\"> {{a.name}}<span *ngIf=\"!lastItem\">, </span> </a>\r\n                </div>\r\n            </div>\r\n            <div><strong>Producer  </strong><a [routerLink]=\"['/person',m.producerName | json ]\">{{m.producerName.name}}</a></div>\r\n            <a routerLink=\"actor\" id=\"\" class=\"btn btn-success btn-sm pull-right\">EDIT Info</a>\r\n        </div>\r\n    </div>\r\n    \r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"movie-info col-md-4 well well-sm\" *ngFor=\"let m of movies\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <img src=\"https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ m.poster }}\" class=\"img-responsive\" />\r\n\r\n            <div class=\"movie-name\">{{m.name}} </div>\r\n            <div><strong>Year  </strong>Released in {{m.releaseYear | date:'mediumDate'}}</div>\r\n            <div>\r\n                <strong>Cast </strong>\r\n                <div class=\"cast\" *ngFor=\"let a of m.cast; let lastItem=last;\">\r\n                    <a [routerLink]=\"['/person', a.name ]\"> {{a.name}}<span *ngIf=\"!lastItem\">, </span> </a>\r\n                </div>\r\n            </div>\r\n            <div><strong>Producer  </strong><a [routerLink]=\"['/person',m.producer | json ]\">{{m.producer.name}}</a></div>\r\n            <a routerLink=\"actor\" id=\"\" class=\"btn btn-success btn-sm pull-right\">EDIT Info</a>\r\n        </div>\r\n    </div>\r\n    \r\n</div>"
 
 /***/ }),
 

@@ -47,13 +47,13 @@ namespace IMDB.Migrations
 
                     b.Property<string>("Poster");
 
-                    b.Property<int?>("ProducerNameId");
+                    b.Property<int>("ProducerId");
 
                     b.Property<DateTime>("ReleaseYear");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProducerNameId");
+                    b.HasIndex("ProducerId");
 
                     b.ToTable("Movies");
                 });
@@ -89,15 +89,16 @@ namespace IMDB.Migrations
                     b.ToTable("Producers");
 
                     b.HasData(
-                        new { Id = 1, Bio = "hehehehe", Dob = new DateTime(2018, 12, 6, 13, 15, 19, 756, DateTimeKind.Local), Name = "Steven", Sex = "M" }
+                        new { Id = 1, Bio = "hehehehe", Dob = new DateTime(2018, 12, 17, 12, 38, 4, 600, DateTimeKind.Local), Name = "Steven", Sex = "M" }
                     );
                 });
 
             modelBuilder.Entity("IMDB.Data.Entities.Movie", b =>
                 {
-                    b.HasOne("IMDB.Data.Entities.Producer", "ProducerName")
+                    b.HasOne("IMDB.Data.Entities.Producer", "Producer")
                         .WithMany("Movies")
-                        .HasForeignKey("ProducerNameId");
+                        .HasForeignKey("ProducerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("IMDB.Data.Entities.MovieActor", b =>

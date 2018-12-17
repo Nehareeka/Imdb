@@ -28,5 +28,21 @@ export class DataService {
                 return this.person;
             }));
     }
+
+    addNewMovie(movie: string): Observable<boolean> {
+        return this.http.post("/api/movie", movie, { headers: {
+                'Content-Type': 'application/json'
+            }})
+            .pipe(map((data: any) => {
+                return data;
+            }));
+    }
+
+    loadPerson(person: string): Observable<Person[]> {
+        return this.http.get("/api/"+person)
+            .pipe(map((data: any) => {
+                return data;
+            }));
+    }
     
 }

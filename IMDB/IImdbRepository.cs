@@ -8,10 +8,11 @@ namespace IMDB.Data
     {
         IEnumerable<MovieDto> GetAllMovies();
         MovieDto GetMovieById(int id);
-        IEnumerable<CastDto> GetAllActors();
+        IEnumerable<SimpleDto> GetAllActors();
         CastDto GetActorByName(string name);
         void AddEntity(object movie);
         bool SaveAll();
         ProducerDto GetProducer(int id);
+        IEnumerable<SimpleDto> GetProducer();
     }
 }

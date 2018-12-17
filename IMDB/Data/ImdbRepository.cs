@@ -30,7 +30,7 @@ namespace IMDB.Data
             try
             {
                 var result = _context.Movies
-                    .Include(m => m.ProducerName)
+                    .Include(m => m.Producer)
                     .Include(m => m.Cast)
                     .ThenInclude(c=>c.Actor)
                     .ToList();
@@ -50,7 +50,8 @@ namespace IMDB.Data
             {
                 
                 var result = _context.Movies
-                    .Include(m => m.ProducerName)
+                    .Include(m => m.Producer)
+                    .ThenInclude(m=>m.Movies)
                     .Include(m => m.Cast)
                     .ThenInclude(c=>c.Actor)
                     .FirstOrDefault(m => m.Id==id);
@@ -64,15 +65,18 @@ namespace IMDB.Data
             }
         }
 
-        public IEnumerable<CastDto> GetAllActors()
+        public IEnumerable<SimpleDto> GetAllActors()
         {
             try
             {
                 var result = _context.Actors
-                    .Include(m => m.Movies)
-                    .ThenInclude(c => c.Movie)
-                    .ToList();
-                return _mapper.Map<IEnumerable<Actor>, IEnumerable<CastDto>>(result);
+                        .Select(p => new SimpleDto()
+                        {
+                            Name = p.Name,
+                            Id = p.Id
+                        })
+                        .ToList();
+                return result;
             }
             catch(Exception ex)
             {
@@ -119,7 +123,27 @@ namespace IMDB.Data
             }
             catch(Exception ex)
             {
-                _logger.LogError($"Unable to fetch producer data: {ex}");
+                _logger.LogError($"Unable to fetch Producer data: {ex}");
+                return null;
+            }
+        }
+
+        public IEnumerable<SimpleDto> GetProducer()
+        {
+            try
+            {
+                 var result = _context.Producers
+                    .Select(p=> new SimpleDto()
+                        {
+                            Name = p.Name,
+                            Id = p.Id
+                        })
+                    .ToList();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Unable to fetch Producer data: {ex}");
                 return null;
             }
         }

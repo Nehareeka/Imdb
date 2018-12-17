@@ -15,6 +15,6 @@ namespace IMDB.Data.Dto
         public DateTime ReleaseYear { get; set; }
         public string Poster { get; set; }//Image url
         public virtual ICollection<SimpleDto> Cast { get; set; }
-        public ProducerDto ProducerName { get; set; }
+        public ProducerDto Producer { get; set; }
     }
 }

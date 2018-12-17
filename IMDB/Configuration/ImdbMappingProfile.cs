@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using IMDB.Data.Dto;
 using IMDB.Data.Entities;
+using IMDB.ViewModel;
 
 namespace IMDB.Configuration
 {
@@ -12,7 +13,8 @@ namespace IMDB.Configuration
         {
             CreateMap<Movie, MovieDto>()
                 .ForMember(dto => dto.Cast, opt => opt.MapFrom(x => x.Cast.Select(a => a.Actor)))
-                .ForMember(dto => dto.ProducerName, opt => opt.MapFrom(x => x.ProducerName));
+                .ForMember(dto => dto.Producer, opt => opt.MapFrom(x => x.Producer))
+                .ReverseMap();
             CreateMap<MovieActor, MovieDetailsDto>()
                     .ForMember(res => res.Id, opt => opt.MapFrom(dto => dto.Movie.Id))
                     .ForMember(res => res.Name, opt => opt.MapFrom(dto => dto.Movie.Name));
@@ -22,6 +24,8 @@ namespace IMDB.Configuration
             //CreateMap<Movie, MovieDetailsDto>()
             //        .ForMember(res => res.Id, opt => opt.MapFrom(dto => dto.Id))
             //        .ForMember(res => res.Name, opt => opt.MapFrom(dto => dto.Name));
+
+           
         }
     }
 }

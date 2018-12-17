@@ -17,10 +17,10 @@ namespace IMDB.ViewModel
         [Required]
         public DateTime ReleaseYear { get; set; }
         public string Plot { get; set; }
-        public string Poster { get; set; }//Image url
+      //  public string Poster { get; set; }//Image url
         [Required]
-        public virtual ICollection<MovieActor> Cast { get; set; }
+        public string Cast { get; set; }
         [Required]
-        public Producer ProducerName { get; set; }
+        public string ProducerName { get; set; }
     }
 }
